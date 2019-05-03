@@ -62,7 +62,8 @@ ROOT_URLCONF = 'accounting_integrations.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR,'templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,7 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 # Authentication Backends
 AUTHENTICATION_BACKENDS = (
@@ -136,7 +139,8 @@ AUTHENTICATION_BACKENDS = (
 
 # All Auth related settings
 ACCOUNT_EMAIL_VERIFICATION = "none"
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'index'
+ACCOUNT_LOGOUT_ON_GET = True
 
 # Project related settings
 FYLE_BASE_URL = 'https://staging.fyle.in'
