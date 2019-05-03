@@ -1,0 +1,71 @@
+{% load staticfiles %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Fyle Accounting Integrations</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static "vendors/iconfonts/mdi/css/materialdesignicons.min.css" %}">
+  <link rel="stylesheet" href="{% static "vendors/css/vendor.bundle.base.css" %}">
+  <link rel="stylesheet" href="{%  static "vendors/css/vendor.bundle.addons.css" %}">
+  <!-- endinject -->
+
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{%  static "css/style.css" %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{%  static "images/favicon.png" %}" />
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth">
+        <div class="row w-100">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left p-5">
+              <div class="brand-logo">
+                <img src="{% static "images/fylelogo.png" %}">
+              </div>
+              <h4>Hello! let's get started</h4>
+              <h6 class="font-weight-light">Sign in to continue.</h6>
+              <form class="pt-3">
+                <div class="mb-2">
+                  <a type="button" class="btn btn-block btn-gradient-danger auth-form-btn"
+                     href="{% provider_login_url 'fyle' %}">
+                    Connect using your Fyle Account
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+  <!-- plugins:js -->
+  <script src="{% static "vendors/js/vendor.bundle.base.js" %}"></script>
+  <script src="{% static "vendors/js/vendor.bundle.addons.js" %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+
+  <!-- inject:js -->
+  <script src="{% static "js/off-canvas.js" %}"></script>
+  <script src="{% static "js/misc.js" %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
+
+</html>
