@@ -17,3 +17,5 @@ Setup the Oauth2 Integration
 * Add a `social application` with provider as Fyle and other relevant details.
 
 That's it now you have enabled Fyle Oauth2 integration for login.
+
+Load the seed data with the command `python manage.py loaddata seed_data`
