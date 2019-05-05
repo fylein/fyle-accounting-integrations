@@ -21,5 +21,17 @@ from accounting_integrations.fyle_import import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('fyle-data/projects',
+         login_required(views.ProjectListView.as_view()), name='project_list'),
+    path('fyle-data/cost-centers',
+         login_required(views.CostCenterListView.as_view()), name='costcenter_list'),
+    path('fyle-data/categories',
+         login_required(views.CategoryListView.as_view()), name='category_list'),
+    path('fyle-data/employees',
+         login_required(views.EmployeeListView.as_view()), name='employee_list'),
+    path('fyle-data/expenses',
+         login_required(views.ExpenseListView.as_view()), name='expense_list'),
+    path('fyle-data/advances',
+         login_required(views.AdvanceListView.as_view()), name='advance_list'),
     path('', login_required(views.IndexView.as_view()), name='index'),
 ]

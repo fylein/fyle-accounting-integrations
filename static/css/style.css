@@ -17739,6 +17739,7 @@ input:focus {
   background: #ffffff;
   width: 260px;
   height: 70px;
+  border-bottom: medium solid #f36;
 }
 
 .sidebar-light .navbar.default-layout-navbar .navbar-brand-wrapper {
@@ -17789,6 +17790,7 @@ input:focus {
   padding-right: 24px;
   width: calc(100% - 260px);
   height: 70px;
+  border-bottom: medium solid #f36;
 }
 
 @media (max-width: 991px) {
