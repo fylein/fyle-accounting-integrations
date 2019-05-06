@@ -114,6 +114,22 @@ class EmployeeListView(ListView):
         return queryset
 
 
+class EmployeeUpdateView(SuccessMessageMixin, UpdateView):
+    """ View for updating a category """
+    template_name = 'employee_form.html'
+    model = Employee
+    fields = ['code1', 'code2', 'code3']
+    success_url = reverse_lazy('employee_list')
+    success_message = 'Employee <strong>%(full_name)s</strong> has been ' \
+                      'updated successfully'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            full_name=self.object.full_name,
+        )
+
+
 class ExpenseListView(ListView):
     """ View for listing of Expenses """
     template_name = 'expense_list.html'

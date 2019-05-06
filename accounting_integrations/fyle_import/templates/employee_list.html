@@ -20,9 +20,6 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">List of Employees in your Fyle Account</h4>
-  {#        <p class="card-description">#}
-  {#          Add class <code>.table-striped</code>#}
-  {#        </p>#}
           <table class="table table-striped">
             <thead>
               <tr>
@@ -41,7 +38,7 @@
             <tbody>
               {% for employee in employee_list %}
                 <tr>
-                  <td>{{ employee.full_name }}</td>
+                  <td><a href="{% url "employee_update" employee.id%}">{{ employee.full_name }}</a></td>
                   <td>{{ employee.employee_email }}</td>
                   <td>{{ employee.employee_code }}</td>
                   <td>{{ employee.business_unit }}</td>
