@@ -80,11 +80,39 @@
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">Fyle Data</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "project_list" %}">Projects</a>
+                  <a class="nav-link" href="{% url "costcenter_list" %}">Cost Centers</a>
+                  <a class="nav-link" href="{% url "category_list" %}">Categories</a>
+                  <a class="nav-link" href="{% url "employee_list" %}">Employees</a>
+                  <a class="nav-link" href="{% url "expense_list" %}">Expenses</a>
+                  <a class="nav-link" href="{% url "advance_list" %}">Advances</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
+          <div class="content-wrapper">
+          {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message|safe }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+
           {% block body_content %}
           {% endblock body_content %}
         </div>

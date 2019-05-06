@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +11,6 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static "vendors/iconfonts/mdi/css/materialdesignicons.min.css" %}">
   <link rel="stylesheet" href="{% static "vendors/css/vendor.bundle.base.css" %}">
-  <link rel="stylesheet" href="{%  static "vendors/css/vendor.bundle.addons.css" %}">
   <!-- endinject -->
 
   <!-- plugin css for this page -->
@@ -21,29 +19,32 @@
   <link rel="stylesheet" href="{%  static "css/style.css" %}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{%  static "images/favicon.png" %}" />
-
 </head>
 
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth">
-        <div class="row w-100">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left p-5">
-              <div class="brand-logo">
-                <img src="{% static "images/fylelogo.png" %}">
+      <div class="content-wrapper d-flex align-items-center text-center error-page bg-info">
+        <div class="row flex-grow">
+          <div class="col-lg-7 mx-auto text-white">
+            <div class="row align-items-center d-flex flex-row">
+              <div class="col-lg-6 text-lg-right pr-lg-4">
+                <h1 class="display-1 mb-0">500</h1>
               </div>
-              <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
-                <div class="mb-2">
-                  <a class="btn btn-block btn-gradient-danger auth-form-btn"
-                     href="{% provider_login_url 'fyle' %}">
-                    Connect using your Fyle Account
-                  </a>
-                </div>
-              </form>
+              <div class="col-lg-6 error-page-divider text-lg-left pl-lg-4">
+                <h2>SORRY!</h2>
+                <h3 class="font-weight-light">Internal server error!</h3>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-12 text-center mt-xl-2">
+                <a class="text-white font-weight-medium" href="{% url "index" %}">Back to home</a>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-12 mt-xl-2">
+                <p class="text-white font-weight-medium text-center">Copyright &copy; 2018  All rights reserved.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -52,7 +53,7 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-
+  <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{% static "vendors/js/vendor.bundle.base.js" %}"></script>
   <script src="{% static "vendors/js/vendor.bundle.addons.js" %}"></script>
@@ -64,8 +65,6 @@
   <script src="{% static "js/off-canvas.js" %}"></script>
   <script src="{% static "js/misc.js" %}"></script>
   <!-- endinject -->
-  <!-- Custom js for this page-->
-  <!-- End custom js for this page-->
 </body>
 
 </html>

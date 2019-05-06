@@ -1,0 +1,196 @@
+{% extends 'layout.html' %}
+{% load fyle_import %}
+
+{% block title %}Fyle Accounting Integrations - Expense Data{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      Fyle Expense Data
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Fyle Data</a></li>
+        <li class="breadcrumb-item" aria-current="page">Expenses</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ expense.id }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Details of Expense <span class="font-weight-bold">{{ expense.id }}</span></h4>
+
+            <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Employee</label>
+
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.employee.full_name }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Project</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.project.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Cost Center</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.cost_center.name }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Category</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.category.name}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Currency</label>
+
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.currency }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Amount</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.amount }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Foreign Currency</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.foreign_currency|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Foreign Amount</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.foreign_amount|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Purpose</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.purpose|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">State</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.state|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Spent At</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.spent_at|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Created At</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.created_at|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Approved At</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.approved_at|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Verified</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.verified|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Verified At</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.verified_at|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Reimbursable</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.reimbursable|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Reimbursed At</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.reimbursed_at|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Vendor</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ expense.vendor|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}

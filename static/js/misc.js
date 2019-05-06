@@ -82,5 +82,10 @@
         }
       }
     })
+
+    //checkbox unclickable
+    $(".nochange").click(function () {
+        return false;
+    });
   });
 })(jQuery);

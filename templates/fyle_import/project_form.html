@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% load fyle_import %}
+
+{% block title %}Fyle Accounting Integrations - Project List{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      Fyle Project Data
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Fyle Data</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Projects</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Edit Project <span class="font-weight-bold">{{ project.id }}</span></h4>
+          <form class="form-sample" method="post">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Name</label>
+
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ project.name }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Description</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ project.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Code 1</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" name="code1" id="id_code1"
+                         value="{{ project.code1|default_if_none:"" }}"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Code 2</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" name="code2" id="id_code2"
+                         value="{{ project.code2|default_if_none:"" }}"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Code 3</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" name="code3" id="id_code3"
+                         value="{{ project.code3|default_if_none:"" }}"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Active</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">
+                      <i class="mdi {% if project.active %}mdi-check-circle{% else %}mdi-checkbox-blank-circle-outline{% endif %}
+                       mdi-24px text-primary"></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+            <a class="btn btn-light" href="{% url "project_list" %}">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}
