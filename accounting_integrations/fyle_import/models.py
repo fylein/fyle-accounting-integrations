@@ -9,9 +9,9 @@ class Project(models.Model):
     name = models.TextField(null=True)
     description = models.TextField(null=True)
     active = models.BooleanField()
-    code1 = models.TextField(null=True)
-    code2 = models.TextField(null=True)
-    code3 = models.TextField(null=True)
+    code1 = models.TextField(null=True, blank=True)
+    code2 = models.TextField(null=True, blank=True)
+    code3 = models.TextField(null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
@@ -21,9 +21,9 @@ class CostCenter(models.Model):
     id = models.CharField(primary_key=True, max_length=50)
     name = models.TextField(null=True)
     description = models.TextField(null=True)
-    code1 = models.TextField(null=True)
-    code2 = models.TextField(null=True)
-    code3 = models.TextField(null=True)
+    code1 = models.TextField(null=True, blank=True)
+    code2 = models.TextField(null=True, blank=True)
+    code3 = models.TextField(null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
@@ -36,9 +36,9 @@ class Category(models.Model):
     fyle_category = models.TextField(null=True)
     sub_category = models.TextField(null=True)
     enabled = models.BooleanField()
-    code1 = models.TextField(null=True)
-    code2 = models.TextField(null=True)
-    code3 = models.TextField(null=True)
+    code1 = models.TextField(null=True, blank=True)
+    code2 = models.TextField(null=True, blank=True)
+    code3 = models.TextField(null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
@@ -60,9 +60,9 @@ class Employee(models.Model):
     disabled = models.BooleanField()
     org_id = models.TextField(null=True)
     org_name = models.TextField(null=True)
-    code1 = models.TextField(null=True)
-    code2 = models.TextField(null=True)
-    code3 = models.TextField(null=True)
+    code1 = models.TextField(null=True, blank=True)
+    code2 = models.TextField(null=True, blank=True)
+    code3 = models.TextField(null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
@@ -111,4 +111,3 @@ class Advance(models.Model):
     original_amount = models.FloatField(null=True)
     reference = models.TextField(null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-

@@ -1,4 +1,6 @@
-from django.views.generic import TemplateView, ListView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic import TemplateView, ListView, UpdateView
+from django.urls import reverse_lazy
 
 from accounting_integrations.fyle_import.models import (
     Project, CostCenter, Category, Employee, Expense, Advance)
@@ -20,6 +22,22 @@ class ProjectListView(ListView):
         queryset = super().get_queryset()
         queryset.filter(user=self.request.user)
         return queryset
+
+
+class ProjectUpdateView(SuccessMessageMixin, UpdateView):
+    """ View for updating a product """
+    template_name = 'project_form.html'
+    model = Project
+    fields = ['code1', 'code2', 'code3']
+    success_url = reverse_lazy('project_list')
+    success_message = 'Project <strong>%(name)s</strong> has been ' \
+                      'updated successfully'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            name=self.object.name,
+        )
 
 
 class CostCenterListView(ListView):

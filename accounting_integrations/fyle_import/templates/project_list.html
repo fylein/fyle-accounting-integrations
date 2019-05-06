@@ -26,18 +26,18 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th class="font-weight-bold">Name</th>
-                <th class="font-weight-bold">Description</th>
-                <th class="font-weight-bold">Code 1</th>
-                <th class="font-weight-bold">Code 2</th>
-                <th class="font-weight-bold">Code 3</th>
-                <th class="font-weight-bold">Active</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Code 1</th>
+                <th>Code 2</th>
+                <th>Code 3</th>
+                <th>Active</th>
               </tr>
             </thead>
             <tbody>
               {% for project in project_list  %}
                 <tr>
-                  <td>{{ project.name }}</td>
+                  <td><a href="{% url "project_update" project.id %}">{{ project.name }}</a></td>
                   <td>{{ project.description }}</td>
                   <td>{{ project.code1|default_if_none:"" }}</td>
                   <td>{{ project.code2|default_if_none:"" }}</td>

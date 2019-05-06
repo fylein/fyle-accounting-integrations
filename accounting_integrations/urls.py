@@ -23,6 +23,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('fyle-data/projects',
          login_required(views.ProjectListView.as_view()), name='project_list'),
+    path('fyle-data/projects/<str:pk>/',
+         login_required(views.ProjectUpdateView.as_view()), name='project_update'),
     path('fyle-data/cost-centers',
          login_required(views.CostCenterListView.as_view()), name='costcenter_list'),
     path('fyle-data/categories',
