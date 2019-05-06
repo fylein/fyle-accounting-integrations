@@ -7,12 +7,12 @@ from accounting_integrations.fyle_import.models import (
 
 
 class IndexView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'fyle_import/index.html'
 
 
 class ProjectListView(ListView):
     """ View for listing of Projects """
-    template_name = 'project_list.html'
+    template_name = 'fyle_import/project_list.html'
     model = Project
     paginate_by = 10
     ordering = ['name']
@@ -26,7 +26,7 @@ class ProjectListView(ListView):
 
 class ProjectUpdateView(SuccessMessageMixin, UpdateView):
     """ View for updating a project """
-    template_name = 'project_form.html'
+    template_name = 'fyle_import/project_form.html'
     model = Project
     fields = ['code1', 'code2', 'code3']
     success_url = reverse_lazy('project_list')
@@ -42,7 +42,7 @@ class ProjectUpdateView(SuccessMessageMixin, UpdateView):
 
 class CostCenterListView(ListView):
     """ View for listing of Cost Centers """
-    template_name = 'costcenter_list.html'
+    template_name = 'fyle_import/costcenter_list.html'
     model = CostCenter
     paginate_by = 10
     ordering = ['name']
@@ -56,7 +56,7 @@ class CostCenterListView(ListView):
 
 class CostCenterUpdateView(SuccessMessageMixin, UpdateView):
     """ View for updating a cost center """
-    template_name = 'costcenter_form.html'
+    template_name = 'fyle_import/costcenter_form.html'
     model = CostCenter
     fields = ['code1', 'code2', 'code3']
     success_url = reverse_lazy('costcenter_list')
@@ -72,7 +72,7 @@ class CostCenterUpdateView(SuccessMessageMixin, UpdateView):
 
 class CategoryListView(ListView):
     """ View for listing of Categories """
-    template_name = 'category_list.html'
+    template_name = 'fyle_import/category_list.html'
     model = Category
     paginate_by = 10
     ordering = ['name']
@@ -86,7 +86,7 @@ class CategoryListView(ListView):
 
 class CategoryUpdateView(SuccessMessageMixin, UpdateView):
     """ View for updating a category """
-    template_name = 'category_form.html'
+    template_name = 'fyle_import/category_form.html'
     model = Category
     fields = ['code1', 'code2', 'code3']
     success_url = reverse_lazy('category_list')
@@ -102,7 +102,7 @@ class CategoryUpdateView(SuccessMessageMixin, UpdateView):
 
 class EmployeeListView(ListView):
     """ View for listing of Employees """
-    template_name = 'employee_list.html'
+    template_name = 'fyle_import/employee_list.html'
     model = Employee
     paginate_by = 10
     ordering = ['full_name']
@@ -116,7 +116,7 @@ class EmployeeListView(ListView):
 
 class EmployeeUpdateView(SuccessMessageMixin, UpdateView):
     """ View for updating a category """
-    template_name = 'employee_form.html'
+    template_name = 'fyle_import/employee_form.html'
     model = Employee
     fields = ['code1', 'code2', 'code3']
     success_url = reverse_lazy('employee_list')
@@ -132,7 +132,7 @@ class EmployeeUpdateView(SuccessMessageMixin, UpdateView):
 
 class ExpenseListView(ListView):
     """ View for listing of Expenses """
-    template_name = 'expense_list.html'
+    template_name = 'fyle_import/expense_list.html'
     model = Expense
     paginate_by = 10
     ordering = ['-created_at']
@@ -146,7 +146,7 @@ class ExpenseListView(ListView):
 
 class ExpenseDetailView(DetailView):
     """ View for detail of Expenses """
-    template_name = 'expense_detail.html'
+    template_name = 'fyle_import/expense_detail.html'
     model = Expense
 
     def get_queryset(self):
@@ -160,7 +160,7 @@ class ExpenseDetailView(DetailView):
 
 class AdvanceListView(ListView):
     """ View for listing of advances """
-    template_name = 'advance_list.html'
+    template_name = 'fyle_import/advance_list.html'
     model = Advance
     paginate_by = 10
     ordering = ['-issued_at']
@@ -175,7 +175,7 @@ class AdvanceListView(ListView):
 
 class AdvanceDetailView(DetailView):
     """ View for detail of Expenses """
-    template_name = 'advance_detail.html'
+    template_name = 'fyle_import/advance_detail.html'
     model = Advance
 
     def get_queryset(self):
