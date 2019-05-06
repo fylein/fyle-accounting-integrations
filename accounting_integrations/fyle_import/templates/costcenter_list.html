@@ -36,7 +36,7 @@
             <tbody>
               {% for costcenter in costcenter_list  %}
                 <tr>
-                  <td>{{ costcenter.name }}</td>
+                  <td><a href="{% url "costcenter_update" costcenter.id %}">{{ costcenter.name }}</a> </td>
                   <td>{{ costcenter.description }}</td>
                   <td>{{ costcenter.code1|default_if_none:"" }}</td>
                   <td>{{ costcenter.code2|default_if_none:"" }}</td>

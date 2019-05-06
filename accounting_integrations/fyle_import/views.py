@@ -25,7 +25,7 @@ class ProjectListView(ListView):
 
 
 class ProjectUpdateView(SuccessMessageMixin, UpdateView):
-    """ View for updating a product """
+    """ View for updating a project """
     template_name = 'project_form.html'
     model = Project
     fields = ['code1', 'code2', 'code3']
@@ -54,6 +54,22 @@ class CostCenterListView(ListView):
         return queryset
 
 
+class CostCenterUpdateView(SuccessMessageMixin, UpdateView):
+    """ View for updating a cost center """
+    template_name = 'costcenter_form.html'
+    model = CostCenter
+    fields = ['code1', 'code2', 'code3']
+    success_url = reverse_lazy('costcenter_list')
+    success_message = 'Cost Center <strong>%(name)s</strong> has been ' \
+                      'updated successfully'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            name=self.object.name,
+        )
+
+
 class CategoryListView(ListView):
     """ View for listing of Categories """
     template_name = 'category_list.html'
@@ -66,6 +82,22 @@ class CategoryListView(ListView):
         queryset = super().get_queryset()
         queryset.filter(user=self.request.user)
         return queryset
+
+
+class CategoryUpdateView(SuccessMessageMixin, UpdateView):
+    """ View for updating a category """
+    template_name = 'category_form.html'
+    model = Category
+    fields = ['code1', 'code2', 'code3']
+    success_url = reverse_lazy('category_list')
+    success_message = 'Category <strong>%(name)s</strong> has been ' \
+                      'updated successfully'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            name=self.object.name,
+        )
 
 
 class EmployeeListView(ListView):
