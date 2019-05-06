@@ -26,6 +26,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Employee</th>
                 <th>Project</th>
                 <th>Currency</th>
@@ -41,6 +42,7 @@
             <tbody>
               {% for advance in advance_list %}
                 <tr>
+                  <td><a href="{% url "advance_detail" advance.id %}">{{ advance.id }}</a></td>
                   <td>{{ advance.employee.full_name }}</td>
                   <td>{{ advance.project.name }}</td>
                   <td>{{ advance.currency }}</td>

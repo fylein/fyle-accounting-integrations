@@ -26,6 +26,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Employee</th>
                 <th>Currency</th>
                 <th>Amount</th>
@@ -41,6 +42,7 @@
             <tbody>
               {% for expense in expense_list %}
                 <tr>
+                  <td><a href="{% url "expense_detail" expense.id %}">{{ expense.id }}</a></td>
                   <td>{{ expense.employee.full_name }}</td>
                   <td>{{ expense.currency }}</td>
                   <td>{{ expense.amount }}</td>

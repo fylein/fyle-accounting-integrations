@@ -1,5 +1,5 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import TemplateView, ListView, UpdateView
+from django.views.generic import TemplateView, ListView, UpdateView, DetailView
 from django.urls import reverse_lazy
 
 from accounting_integrations.fyle_import.models import (
@@ -144,12 +144,39 @@ class ExpenseListView(ListView):
         return queryset
 
 
+class ExpenseDetailView(DetailView):
+    """ View for detail of Expenses """
+    template_name = 'expense_detail.html'
+    model = Expense
+
+    def get_queryset(self):
+        """ Show only current user data """
+        queryset = super().get_queryset()
+        queryset.filter(user=self.request.user).\
+            select_related('employee').select_related('costcenter').\
+            select_related('project')
+        return queryset
+
+
 class AdvanceListView(ListView):
     """ View for listing of advances """
     template_name = 'advance_list.html'
     model = Advance
     paginate_by = 10
     ordering = ['-issued_at']
+
+    def get_queryset(self):
+        """ Show only current user data """
+        queryset = super().get_queryset()
+        queryset.filter(user=self.request.user).\
+            select_related('employee').select_related('project')
+        return queryset
+
+
+class AdvanceDetailView(DetailView):
+    """ View for detail of Expenses """
+    template_name = 'advance_detail.html'
+    model = Advance
 
     def get_queryset(self):
         """ Show only current user data """
