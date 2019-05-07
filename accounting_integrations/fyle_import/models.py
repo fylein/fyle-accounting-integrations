@@ -111,3 +111,17 @@ class Advance(models.Model):
     original_amount = models.FloatField(null=True)
     reference = models.TextField(null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+class FyleImportConfiguration(models.Model):
+    """ Model for saving Import configuration for a user """
+    notification_emails = models.TextField(null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+class ImportBatch(models.Model):
+    """ Model for recording the Import Batch Jobs """
+    created_at = models.DateTimeField(auto_now_add=True)
+    min_updated_at = models.DateTimeField()
+    expenses = models.ManyToManyField(Expense)
+    advances = models.ManyToManyField(Advance)
