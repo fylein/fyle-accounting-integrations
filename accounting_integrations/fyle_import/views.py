@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, ListView, UpdateView, DetailView
 from django.urls import reverse_lazy
 
 from accounting_integrations.fyle_import.models import (
-    Project, CostCenter, Category, Employee, Expense, Advance)
+    Project, CostCenter, Category, Employee, Expense, Advance, FyleImportConfiguration)
 
 
 class IndexView(TemplateView):
@@ -184,3 +184,18 @@ class AdvanceDetailView(DetailView):
         queryset.filter(user=self.request.user).\
             select_related('employee').select_related('project')
         return queryset
+
+
+class FyleImportConfigurationView(SuccessMessageMixin, UpdateView):
+    """ View for updating a category """
+    template_name = 'fyle_import/fyle_import_config.html'
+    model = FyleImportConfiguration
+    fields = ['notification_emails']
+    success_url = reverse_lazy('fyle_import_config')
+    success_message = 'Fyle Import Configuration has been updated successfully'
+
+    def get_object(self, queryset=None):
+        """ Return the fyle import configuration for the user"""
+        import_config, _ = self.get_queryset().get_or_create(user=self.request.user)
+        return import_config
+

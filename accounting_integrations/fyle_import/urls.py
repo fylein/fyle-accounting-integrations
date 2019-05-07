@@ -27,6 +27,9 @@ urlpatterns = [
          login_required(views.AdvanceDetailView.as_view()), name='advance_detail'),
     path('fyle-data/advances',
          login_required(views.AdvanceListView.as_view()), name='advance_list'),
+    path('fyle-import-config',
+         login_required(views.FyleImportConfigurationView.as_view()),
+         name='fyle_import_config'),
     path('dashboard', login_required(views.IndexView.as_view()), name='index'),
 
 ]
