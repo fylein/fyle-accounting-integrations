@@ -23,10 +23,10 @@ def import_fyle_data(import_batch_id):
 
     # Fetch the last updated date
     last_updated_at = datetime(2010, 1, 1)
-    last_batch = ImportBatch.objects.filter().order_by('-created_at').first()
+    last_batch = ImportBatch.objects.exclude(id=batch.id).\
+        order_by('-created_at').first()
     if last_batch:
         last_updated_at = last_batch.created_at
-
     min_updated_at, max_updated_at = None, None
 
     # Sync the Project Data
@@ -91,6 +91,7 @@ def import_fyle_data(import_batch_id):
     expense_params = {
         'updated_at': 'gte:' + last_updated_at.strftime('%Y-%m-%dT%H:%M:%S.000Z')}
     for data in get_fyle_data(fyle_api.Expenses, expense_params, True):
+        print(data)
         min_updated_at, max_updated_at = get_min_max_updated_at(
             data, min_updated_at, max_updated_at)
         defaults = {

@@ -246,9 +246,8 @@ class ImportBatchExpenseListView(ListView):
 
     def get_queryset(self):
         """ Show only current user data """
-        queryset = super().get_queryset()
-        queryset.filter(importbatch__id=self.kwargs.get('pk')). \
-            select_related('employee')
+        queryset = ImportBatch.objects.get(
+            id=self.kwargs.get('pk')).expenses.filter()
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -266,9 +265,8 @@ class ImportBatchAdvanceListView(ListView):
 
     def get_queryset(self):
         """ Show only current user data """
-        queryset = super().get_queryset()
-        queryset.filter(importbatch__id=self.kwargs.get('pk')).\
-            select_related('employee')
+        queryset = ImportBatch.objects.get(
+            id=self.kwargs.get('pk')).advances.filter()
         return queryset
 
     def get_context_data(self, **kwargs):
