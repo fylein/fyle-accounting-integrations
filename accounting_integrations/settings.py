@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -143,5 +144,5 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 # Project related settings
 FYLE_BASE_URL = 'https://staging.fyle.in'
-FYLE_CLIENT_ID = 'tpauSvHSHl5RE'
-FYLE_CLIENT_SECRET = '61b05a18-b7bf-4052-0aad5-34f85a669d6'
+FYLE_CLIENT_ID = config('FYLE_CLIENT_ID')
+FYLE_CLIENT_SECRET = config('FYLE_CLIENT_SECRET')

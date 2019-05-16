@@ -96,7 +96,6 @@ def import_fyle_data(import_batch_id):
 def get_fyle_data(schema, params, paginated=False):
     """ Get the data from the Fyle API """
     data = []
-    print(params)
     if not paginated:
         data.extend(schema.get(**params)['data'])
 
