@@ -116,8 +116,14 @@ class Advance(models.Model):
 class ImportBatch(models.Model):
     """ Model for recording the Import Batch Jobs """
     created_at = models.DateTimeField(auto_now_add=True)
-    min_updated_at = models.DateTimeField()
-    max_updated_at = models.DateTimeField()
+    min_updated_at = models.DateTimeField(null=True, blank=True)
+    max_updated_at = models.DateTimeField(null=True, blank=True)
     expenses = models.ManyToManyField(Expense)
     advances = models.ManyToManyField(Advance)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+class FyleSetting(models.Model):
+    """Model for saving the Fyle Import Settings"""
+    sync_frequency = models.IntegerField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -1,9 +1,11 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import TemplateView, ListView, UpdateView, DetailView
+from django.views.generic import (TemplateView, ListView, UpdateView, DetailView,
+                                  CreateView)
 from django.urls import reverse_lazy
 
 from accounting_integrations.fyle.models import (
     Project, CostCenter, Category, Employee, Expense, Advance, ImportBatch)
+from accounting_integrations.fyle.utils import import_fyle_data
 
 
 class IndexView(TemplateView):
@@ -193,3 +195,43 @@ class AdvanceDetailView(DetailView):
         queryset.filter(user=self.request.user).\
             select_related('employee').select_related('project')
         return queryset
+
+
+class ImportBatchListView(ListView):
+    """ View for listing of Import Batches """
+    template_name = 'fyle/importbatch_list.html'
+    model = ImportBatch
+    paginate_by = 10
+    ordering = ['-created_at']
+
+    def get_queryset(self):
+        """ Show only current user data """
+        queryset = super().get_queryset()
+        queryset.filter(user=self.request.user).\
+            prefetch_related('advances').prefetch_related('expenses')
+        return queryset
+
+
+class ImportBatchCreateView(SuccessMessageMixin, CreateView):
+    """ View for starting a sync Import Batch Process """
+    template_name = 'fyle/importbatch_list.html'
+    model = ImportBatch
+    fields = []
+    success_url = reverse_lazy('importbatch_list')
+    success_message = 'Import Batch <strong>%(id)s</strong> has been created ' \
+                      'successfully'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        response = super().form_valid(form)
+
+        # Call the import function for loading fyle data
+        import_fyle_data(self.object.id)
+
+        return response
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            id=self.object.id,
+        )

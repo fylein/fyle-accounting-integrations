@@ -26,6 +26,10 @@ urlpatterns = [
     path('advances/<str:pk>',
          login_required(views.AdvanceDetailView.as_view()), name='advance_detail'),
     path('advances',
-         login_required(views.AdvanceListView.as_view()), name='advance_list')
+         login_required(views.AdvanceListView.as_view()), name='advance_list'),
+    path('import-batches',
+         login_required(views.ImportBatchListView.as_view()), name='importbatch_list'),
+    path('import-batches/create',
+         login_required(views.ImportBatchCreateView.as_view()), name='importbatch_create')
 
 ]
