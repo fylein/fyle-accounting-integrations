@@ -143,3 +143,5 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 # Project related settings
 FYLE_BASE_URL = 'https://staging.fyle.in'
+FYLE_CLIENT_ID = 'tpauSvHSHl5RE'
+FYLE_CLIENT_SECRET = '61b05a18-b7bf-4052-0aad5-34f85a669d6'

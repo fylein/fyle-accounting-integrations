@@ -1,5 +1,4 @@
-import requests
-
+from fylesdk import FyleSDK
 from django.conf import settings
 from allauth.socialaccount.providers.oauth2.views import (
     OAuth2Adapter,
@@ -20,12 +19,17 @@ class FyleOAuth2Adapter(OAuth2Adapter):
     profile_url = '{0}/user'.format(base_url)
 
     def complete_login(self, request, app, token, **kwargs):
-        # params = {'access_token': token.token}
-        # resp = requests.get(self.profile_url, params=params)
+        # Setup the fyle API
+        fyle_api = FyleSDK(
+            client_id=settings.FYLE_CLIENT_ID,
+            client_secret=settings.FYLE_CLIENT_SECRET,
+            refresh_token=token.token_secret
+        )
+        profile = fyle_api.Employees.get_my_profile()
         extra_data = {
-            'id': 1234,
-            'email': 'admin@fyledev.in',
-            'name': 'Abhishek Ram'
+            'id': profile['data']['id'],
+            'email': profile['data']['employee_email'],
+            'name': profile['data']['full_name']
         }
         return self.get_provider().sociallogin_from_response(
             request, extra_data
