@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    'accounting_integrations.allauth.providers.fyle',
-    'accounting_integrations.fyle_import'
+    'accounting_integrations.allauth.providers.fylein',
+    'accounting_integrations.general',
+    'accounting_integrations.fyle',
 ]
 
 MIDDLEWARE = [

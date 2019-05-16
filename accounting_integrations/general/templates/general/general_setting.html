@@ -1,16 +1,17 @@
 {% extends 'layout.html' %}
 {% load fyle_import %}
 
-{% block title %}Fyle Accounting Integrations - Fyle Import Config{% endblock %}
+{% block title %}Fyle Accounting Integrations - General Settings{% endblock %}
 
 {% block body_content %}
   <div class="page-header">
     <h3 class="page-title">
-      Fyle Cost Center Data
+       General Settings
     </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page"><a href="#">Fyle Import Config</a></li>
+        <li class="breadcrumb-item"><a href="#">General</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Settings</li>
       </ol>
     </nav>
   </div>
@@ -18,10 +19,7 @@
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Fyle Import Configuration</h4>
-          <p class="card-description">
-              Manage your configuration for Fyle Import Jobs
-          </p>
+          <h4 class="card-title"> Manage the general settings for this app </h4>
           <form class="form-sample" method="post">
             {% csrf_token %}
             <br/>
@@ -32,7 +30,7 @@
                   <div class="col-sm-9">
                     <textarea class="form-control mt-2  {% if form.notification_emails.errors %}is-invalid{% endif %}"
                         id="id_notification_emails" name="notification_emails"
-                        rows="4">{{ fyleimportconfiguration.notification_emails|default_if_none:"" }}</textarea>
+                        rows="4">{{ generalsetting.notification_emails|default_if_none:"" }}</textarea>
                     <div class="invalid-feedback">{{ form.notification_emails.errors.0 }}</div>
                     <small id="emailHelp" class="form-text text-muted">Enter a comma separated list of emails to be notified.</small>
                   </div>

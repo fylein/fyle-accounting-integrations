@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required
-from accounting_integrations.fyle_import import views
+from accounting_integrations.fyle import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('fyle-import/', include('accounting_integrations.fyle_import.urls')),
-    path('', login_required(views.IndexView.as_view())),
+    path('fyle/', include('accounting_integrations.fyle.urls')),
+    path('general/', include('accounting_integrations.general.urls')),
+    path('', login_required(views.IndexView.as_view()), name='index'),
 ]

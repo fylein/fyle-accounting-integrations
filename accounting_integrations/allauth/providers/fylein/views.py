@@ -7,7 +7,7 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2LoginView,
 )
 
-from accounting_integrations.allauth.providers.fyle.provider import FyleProvider
+from accounting_integrations.allauth.providers.fylein.provider import FyleProvider
 
 
 class FyleOAuth2Adapter(OAuth2Adapter):

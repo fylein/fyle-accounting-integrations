@@ -74,27 +74,17 @@
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+
           <li class="nav-item">
-            <a class="nav-link" href="{% url "index" %}">
-              <span class="menu-title">Dashboard</span>
-              <i class="mdi mdi-home menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url "fyle_import_config" %}">
-              <span class="menu-title">Fyle Import Config</span>
-              <i class="mdi mdi-settings menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Fyle Data</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-fyle" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">Fyle</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-table-large menu-icon"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui-fyle">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url "project_list" %}">Import Batches</a>
                   <a class="nav-link" href="{% url "project_list" %}">Projects</a>
                   <a class="nav-link" href="{% url "costcenter_list" %}">Cost Centers</a>
                   <a class="nav-link" href="{% url "category_list" %}">Categories</a>
@@ -104,6 +94,27 @@
                 </li>
               </ul>
             </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-general" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">General</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-settings-box menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-general">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "general_setting" %}">Settings</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "account_logout" %}">
+              <span class="menu-title">Logout</span>
+              <i class="mdi mdi-logout menu-icon"></i>
+            </a>
           </li>
         </ul>
       </nav>

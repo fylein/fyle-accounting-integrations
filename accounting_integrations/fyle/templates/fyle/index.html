@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}Fyle Accounting Integrations - Dashboard{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+        <i class="mdi mdi-home"></i>
+      </span>
+      Dashboard
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          <span></span>Overview
+          <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Recent Imports</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Created At</th>
+                  <th>No Of Expenses Imported</th>
+                  <th>No of Advances Imported</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for import_batch in recent_imports %}
+                  <tr>
+                    <td>{{ import_batch.id }}</td>
+                    <td>{{ import_batch.created_at }}</td>
+                    <td>{{ import_batch.expenses|length }}</td>
+                    <td>{{ import_batch.advaces|length }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body_content %}

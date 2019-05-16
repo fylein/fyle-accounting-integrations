@@ -1,4 +1,4 @@
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "49-2902065"
   fields:
     name: "Damsels in Distress"
@@ -6,7 +6,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "94-1510056"
   fields:
     name: "Conceiving Ada"
@@ -14,7 +14,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "79-3001195"
   fields:
     name: "Making a Killing: The Untold Story of Psychotropic Drugging"
@@ -22,7 +22,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "10-5131488"
   fields:
     name: "Act of Valor"
@@ -30,7 +30,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "14-4634901"
   fields:
     name: "Life and Death of Peter Sellers, The"
@@ -38,7 +38,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "68-7658135"
   fields:
     name: "Where the Sidewalk Ends"
@@ -46,7 +46,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "70-1055151"
   fields:
     name: "Shoot 'Em Up"
@@ -54,7 +54,7 @@
     active: False
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "57-1524134"
   fields:
     name: "Advanced Style"
@@ -62,7 +62,7 @@
     active: False
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "28-6134695"
   fields:
     name: "Fourth Angel, The"
@@ -70,7 +70,7 @@
     active: False
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "02-8138679"
   fields:
     name: "Are You Listening?"
@@ -78,7 +78,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "38-5229327"
   fields:
     name: "Death and Cremation"
@@ -86,7 +86,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "03-5052635"
   fields:
     name: "Black Sunday"
@@ -94,7 +94,7 @@
     active: False
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "43-0669082"
   fields:
     name: "Houdini"
@@ -102,7 +102,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "29-2558792"
   fields:
     name: "Quartet"
@@ -110,7 +110,7 @@
     active: True
     user: 2
 
-- model: fyle_import.Project
+- model: fyle.Project
   pk: "69-7187167"
   fields:
     name: "Reasonable Doubt"
@@ -118,112 +118,112 @@
     active: False
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "79-8855438"
   fields:
     name: "iShares FTSE EPRA/NAREIT Europe Index Fund"
     description: "lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "34-0809215"
   fields:
     name: "Hornbeck Offshore Services"
     description: "curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "19-5405562"
   fields:
     name: "ICU Medical, Inc."
     description: "turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "22-7545026"
   fields:
     name: "iStar Financial Inc."
     description: "nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "44-0052988"
   fields:
     name: "CorVel Corp."
     description: "in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "59-6950706"
   fields:
     name: "Yulong Eco-Materials Limited"
     description: "suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "79-3171176"
   fields:
     name: "Essent Group Ltd."
     description: "orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "29-7793916"
   fields:
     name: "EQT Midstream Partners, LP"
     description: "odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "86-5629682"
   fields:
     name: "Werner Enterprises, Inc."
     description: "facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "62-8271674"
   fields:
     name: "Catabasis Pharmaceuticals, Inc."
     description: "pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "87-2383009"
   fields:
     name: "McDermott International, Inc."
     description: "eu massa donec dapibus duis at velit eu est congue elementum in hac"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "96-7432801"
   fields:
     name: "Nuveen S&P 500 Dynamic Overwrite Fund"
     description: "in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "87-7253599"
   fields:
     name: "First Financial Bancorp."
     description: "quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "90-8059543"
   fields:
     name: "American Homes 4 Rent"
     description: "vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget"
     user: 2
 
-- model: fyle_import.CostCenter
+- model: fyle.CostCenter
   pk: "93-3904473"
   fields:
     name: "InfraREIT, Inc."
     description: "donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam"
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "1"
   fields:
     name: "Keylex"
@@ -233,7 +233,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "2"
   fields:
     name: "Bytecard"
@@ -243,7 +243,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "3"
   fields:
     name: "Fintone"
@@ -253,7 +253,7 @@
     enabled: False
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "4"
   fields:
     name: "Otcom"
@@ -263,7 +263,7 @@
     enabled: False
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "5"
   fields:
     name: "Asoka"
@@ -273,7 +273,7 @@
     enabled: False
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "6"
   fields:
     name: "Ventosanzap"
@@ -283,7 +283,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "7"
   fields:
     name: "Daltfresh"
@@ -293,7 +293,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "8"
   fields:
     name: "Stronghold"
@@ -303,7 +303,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "9"
   fields:
     name: "Y-Solowarm"
@@ -313,7 +313,7 @@
     enabled: False
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "10"
   fields:
     name: "Namfix"
@@ -323,7 +323,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "11"
   fields:
     name: "Domainer"
@@ -333,7 +333,7 @@
     enabled: False
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "12"
   fields:
     name: "Zathin"
@@ -343,7 +343,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "13"
   fields:
     name: "Y-find"
@@ -353,7 +353,7 @@
     enabled: False
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "14"
   fields:
     name: "Temp"
@@ -363,7 +363,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Category
+- model: fyle.Category
   pk: "15"
   fields:
     name: "Flowdesk"
@@ -373,7 +373,7 @@
     enabled: True
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "24-5535073"
   fields:
     employee_email: "mpechell0@yolasite.com"
@@ -389,7 +389,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "45-3012431"
   fields:
     employee_email: "boxenden1@google.co.jp"
@@ -405,7 +405,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "91-2528385"
   fields:
     employee_email: "mpeatman2@scientificamerican.com"
@@ -421,7 +421,7 @@
     disabled: True
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "20-2811248"
   fields:
     employee_email: "gbaptista3@icq.com"
@@ -437,7 +437,7 @@
     disabled: True
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "46-7141679"
   fields:
     employee_email: "dpetrello4@tuttocitta.it"
@@ -453,7 +453,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "49-0639965"
   fields:
     employee_email: "vbaynon5@gmpg.org"
@@ -469,7 +469,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "71-9230367"
   fields:
     employee_email: "omeriton6@liveinternet.ru"
@@ -485,7 +485,7 @@
     disabled: True
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "45-6609401"
   fields:
     employee_email: "mmenendes7@about.com"
@@ -501,7 +501,7 @@
     disabled: True
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "73-5133573"
   fields:
     employee_email: "gheskey8@huffingtonpost.com"
@@ -517,7 +517,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "15-5932053"
   fields:
     employee_email: "sbayley9@webnode.com"
@@ -533,7 +533,7 @@
     disabled: True
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "72-0950908"
   fields:
     employee_email: "mkonkea@chron.com"
@@ -549,7 +549,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "83-3808404"
   fields:
     employee_email: "bcodib@fastcompany.com"
@@ -565,7 +565,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "41-1387332"
   fields:
     employee_email: "isellersc@alexa.com"
@@ -581,7 +581,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "70-3791402"
   fields:
     employee_email: "hbrauningerd@paginegialle.it"
@@ -597,7 +597,7 @@
     disabled: False
     user: 2
 
-- model: fyle_import.Employee
+- model: fyle.Employee
   pk: "72-1342313"
   fields:
     employee_email: "jwatsame@nifty.com"
@@ -614,7 +614,7 @@
     user: 2
 
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "86-4061417"
   fields:
     employee: "70-3791402"
@@ -637,7 +637,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "13-5628470"
   fields:
     employee: "70-3791402"
@@ -660,7 +660,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "37-0597409"
   fields:
     employee: "70-3791402"
@@ -683,7 +683,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "12-1220637"
   fields:
     employee: "70-3791402"
@@ -706,7 +706,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "59-7423668"
   fields:
     employee: "70-3791402"
@@ -729,7 +729,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "94-8626435"
   fields:
     employee: "70-3791402"
@@ -752,7 +752,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "35-1356097"
   fields:
     employee: "70-3791402"
@@ -775,7 +775,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "48-2105642"
   fields:
     employee: "70-3791402"
@@ -798,7 +798,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "54-8549862"
   fields:
     employee: "70-3791402"
@@ -821,7 +821,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "44-0611601"
   fields:
     employee: "70-3791402"
@@ -844,7 +844,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "21-9007581"
   fields:
     employee: "70-3791402"
@@ -867,7 +867,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "50-0281081"
   fields:
     employee: "70-3791402"
@@ -890,7 +890,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "39-3485350"
   fields:
     employee: "70-3791402"
@@ -913,7 +913,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "42-4202918"
   fields:
     employee: "70-3791402"
@@ -936,7 +936,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Expense
+- model: fyle.Expense
   pk: "20-3309350"
   fields:
     employee: "70-3791402"
@@ -959,7 +959,7 @@
     category: 3
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "39-5936406"
   fields:
     employee: "70-3791402"
@@ -974,7 +974,7 @@
     reference: "59762-4322"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "31-6906550"
   fields:
     employee: "70-3791402"
@@ -989,7 +989,7 @@
     reference: "10202-612"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "01-4637049"
   fields:
     employee: "70-3791402"
@@ -1004,7 +1004,7 @@
     reference: "63323-508"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "39-0882790"
   fields:
     employee: "70-3791402"
@@ -1019,7 +1019,7 @@
     reference: "59779-319"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "76-0984145"
   fields:
     employee: "70-3791402"
@@ -1034,7 +1034,7 @@
     reference: "68169-0022"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "46-5285088"
   fields:
     employee: "70-3791402"
@@ -1049,7 +1049,7 @@
     reference: "49643-384"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "58-1579295"
   fields:
     employee: "70-3791402"
@@ -1064,7 +1064,7 @@
     reference: "0536-2302"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "83-0901460"
   fields:
     employee: "70-3791402"
@@ -1079,7 +1079,7 @@
     reference: "57520-0711"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "18-2779891"
   fields:
     employee: "70-3791402"
@@ -1094,7 +1094,7 @@
     reference: "59555-401"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "76-8169639"
   fields:
     employee: "70-3791402"
@@ -1109,7 +1109,7 @@
     reference: "23155-201"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "91-4775221"
   fields:
     employee: "70-3791402"
@@ -1124,7 +1124,7 @@
     reference: "0944-8402"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "31-0041431"
   fields:
     employee: "70-3791402"
@@ -1139,7 +1139,7 @@
     reference: "21130-050"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "50-0501012"
   fields:
     employee: "70-3791402"
@@ -1154,7 +1154,7 @@
     reference: "62802-406"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "83-8002314"
   fields:
     employee: "70-3791402"
@@ -1169,7 +1169,7 @@
     reference: "11822-2099"
     user: 2
 
-- model: fyle_import.Advance
+- model: fyle.Advance
   pk: "15-6718200"
   fields:
     employee: "70-3791402"
