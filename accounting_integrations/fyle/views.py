@@ -235,3 +235,43 @@ class ImportBatchCreateView(SuccessMessageMixin, CreateView):
             cleaned_data,
             id=self.object.id,
         )
+
+
+class ImportBatchExpenseListView(ListView):
+    """ View for listing of Expenses """
+    template_name = 'fyle/expense_list.html'
+    model = Expense
+    paginate_by = 10
+    ordering = ['-created_at']
+
+    def get_queryset(self):
+        """ Show only current user data """
+        queryset = super().get_queryset()
+        queryset.filter(importbatch__id=self.kwargs.get('pk')). \
+            select_related('employee')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['importbatch_id'] = self.kwargs.get('pk')
+        return context_data
+
+
+class ImportBatchAdvanceListView(ListView):
+    """ View for listing of Expenses """
+    template_name = 'fyle/advance_list.html'
+    model = Advance
+    paginate_by = 10
+    ordering = ['-issued_at']
+
+    def get_queryset(self):
+        """ Show only current user data """
+        queryset = super().get_queryset()
+        queryset.filter(importbatch__id=self.kwargs.get('pk')).\
+            select_related('employee')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['importbatch_id'] = self.kwargs.get('pk')
+        return context_data

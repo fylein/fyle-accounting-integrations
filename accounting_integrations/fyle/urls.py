@@ -30,6 +30,10 @@ urlpatterns = [
     path('import-batches',
          login_required(views.ImportBatchListView.as_view()), name='importbatch_list'),
     path('import-batches/create',
-         login_required(views.ImportBatchCreateView.as_view()), name='importbatch_create')
+         login_required(views.ImportBatchCreateView.as_view()), name='importbatch_create'),
+    path('import-batches/<int:pk>/expenses',
+         login_required(views.ImportBatchExpenseListView.as_view()), name='importbatch_expeses'),
+    path('import-batches/<int:pk>/advances',
+         login_required(views.ImportBatchAdvanceListView.as_view()), name='importbatch_advances'),
 
 ]

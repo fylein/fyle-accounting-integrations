@@ -42,8 +42,20 @@
               {% for importbatch in importbatch_list %}
                 <tr>
                   <td><a href="{% url "advance_detail" importbatch.id %}">{{ importbatch.id }}</a></td>
-                  <td>{{ importbatch.expenses.count }}</td>
-                  <td>{{ importbatch.advances.count }}</td>
+                  <td>
+                    {% if importbatch.expenses.count %}
+                      <a href="{% url "importbatch_expeses" importbatch.id %}">{{ importbatch.expenses.count }}</a>
+                    {% else %}
+                      {{ importbatch.expenses.count }}
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if importbatch.advances.count %}
+                      <a href="{% url "importbatch_advances" importbatch.id %}">{{ importbatch.advances.count }}</a>
+                    {% else %}
+                      {{ importbatch.advances.count }}
+                    {% endif %}
+                  </td>
                   <td></td>
                   <td>{{ importbatch.created_at }}</td>
                 </tr>
