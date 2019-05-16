@@ -35,6 +35,8 @@
                 <th>Expenses</th>
                 <th>Advances</th>
                 <th>Files</th>
+                <th>Min Updated At</th>
+                <th>Max Updated At</th>
                 <th>Created At</th>
               </tr>
             </thead>
@@ -57,6 +59,8 @@
                     {% endif %}
                   </td>
                   <td></td>
+                  <td>{{ importbatch.min_updated_at|default_if_none:"" }}</td>
+                  <td>{{ importbatch.max_updated_at|default_if_none:"" }}</td>
                   <td>{{ importbatch.created_at }}</td>
                 </tr>
               {% endfor %}

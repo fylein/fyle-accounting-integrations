@@ -2,10 +2,11 @@
 from allauth.socialaccount.models import SocialAccount
 from datetime import datetime
 from django.conf import settings
+from django.utils import dateparse
 from fylesdk import FyleSDK
 
 from accounting_integrations.fyle.models import (
-    ImportBatch, Category, CostCenter, Employee, Expense)
+    ImportBatch, Category, CostCenter, Employee, Expense, Project, Advance)
 
 
 def import_fyle_data(import_batch_id):
@@ -26,12 +27,35 @@ def import_fyle_data(import_batch_id):
     if last_batch:
         last_updated_at = last_batch.created_at
 
-    # Get the Project Data
-    print(fyle_api.Projects.get())
-    print(fyle_api.CostCenters.get())
+    min_updated_at, max_updated_at = None, None
+
+    # Sync the Project Data
+    for data in get_fyle_data(fyle_api.Projects, {}):
+        min_updated_at, max_updated_at = get_min_max_updated_at(
+            data, min_updated_at, max_updated_at)
+        defaults = {
+            'name': data['name'],
+            'description': data['description'],
+            'active': data['active'],
+        }
+        Project.objects.update_or_create(
+            id=data['id'], user=batch.user, defaults=defaults)
+
+    # Sync the Cost Center Data
+    for data in get_fyle_data(fyle_api.CostCenters, {}):
+        min_updated_at, max_updated_at = get_min_max_updated_at(
+            data, min_updated_at, max_updated_at)
+        defaults = {
+            'name': data['name'],
+            'description': data['description'],
+        }
+        CostCenter.objects.update_or_create(
+            id=data['id'], user=batch.user, defaults=defaults)
 
     # Sync the Category Data
     for data in get_fyle_data(fyle_api.Categories, {}):
+        min_updated_at, max_updated_at = get_min_max_updated_at(
+            data, min_updated_at, max_updated_at)
         defaults = {
             'name': data['name'],
             'code': data['code'],
@@ -42,7 +66,9 @@ def import_fyle_data(import_batch_id):
         Category.objects.update_or_create(
             id=data['id'], user=batch.user, defaults=defaults)
 
-    for data in get_fyle_data(fyle_api.Employees, {}, False):
+    for data in get_fyle_data(fyle_api.Employees, {}, True):
+        min_updated_at, max_updated_at = get_min_max_updated_at(
+            data, min_updated_at, max_updated_at)
         defaults = {
             'employee_email': data['employee_email'],
             'employee_code': data['employee_code'],
@@ -64,7 +90,9 @@ def import_fyle_data(import_batch_id):
 
     expense_params = {
         'updated_at': 'gte:' + last_updated_at.strftime('%Y-%m-%dT%H:%M:%S.000Z')}
-    for data in get_fyle_data(fyle_api.Expenses, expense_params, False):
+    for data in get_fyle_data(fyle_api.Expenses, expense_params, True):
+        min_updated_at, max_updated_at = get_min_max_updated_at(
+            data, min_updated_at, max_updated_at)
         defaults = {
             'employee_id': data['employee_id'],
             'currency': data['currency'],
@@ -90,7 +118,30 @@ def import_fyle_data(import_batch_id):
             id=data['id'], user=batch.user, defaults=defaults)
         batch.expenses.add(expense)
 
-    print(fyle_api.Advances.get())
+    advance_params = {
+        'updated_at': 'gte:' + last_updated_at.strftime('%Y-%m-%dT%H:%M:%S.000Z')}
+    for data in get_fyle_data(fyle_api.Advances, advance_params, True):
+        min_updated_at, max_updated_at = get_min_max_updated_at(
+            data, min_updated_at, max_updated_at)
+        defaults = {
+            'employee_id': data['employee_id'],
+            'currency': data['currency'],
+            'amount': data['amount'],
+            'original_currency': data['original_currency'],
+            'original_amount': data['original_amount'],
+            'purpose': data['purpose'],
+            'issued_at': data['issued_at'],
+            'payment_mode': data['payment_mode'],
+            'reference': data['reference'],
+            'project_id': data['project_id'],
+        }
+        advance, _ = Advance.objects.update_or_create(
+            id=data['id'], user=batch.user, defaults=defaults)
+        batch.advances.add(advance)
+
+    batch.min_updated_at = min_updated_at
+    batch.max_updated_at = max_updated_at
+    batch.save()
 
 
 def get_fyle_data(schema, params, paginated=False):
@@ -100,17 +151,29 @@ def get_fyle_data(schema, params, paginated=False):
         data.extend(schema.get(**params)['data'])
 
     else:
-        offset = 0
+        limit = 100
+        page = 1
         while True:
             params.update({
-                'offset': offset,
-                'limit': 100
+                'offset': (page - 1) * limit,
+                'limit': limit
             })
             cur_data = schema.get(**params)['data']
-            if not cur_data:
+            data.extend(cur_data)
+            if len(cur_data) < limit:
                 break
             else:
-                data.extend(cur_data)
-                offset = cur_data[-1]['id']
-
+                page += 1
     return data
+
+
+def get_min_max_updated_at(data, min_updated_at, max_updated_at):
+    """ Function to get the Min and Max Updated At values"""
+    if data.get('updated_at'):
+        updated_at = dateparse.parse_datetime(data.get('updated_at'))
+        if not min_updated_at or updated_at < min_updated_at:
+            min_updated_at = updated_at
+        if not max_updated_at or updated_at > max_updated_at:
+            max_updated_at = updated_at
+
+    return min_updated_at, max_updated_at
