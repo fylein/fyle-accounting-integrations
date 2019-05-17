@@ -8,6 +8,7 @@ Follow these steps to setup your dev environment
 * Install requirements using `pip install -r requirements.txt`
 * Run migrations using `python manage.py migrate`
 * Create a superuser using `python manage.py createsuperuser`
+* Copy the environments file `cp .env.sample .env` and update the variables
 * Start the server using `python manage.py runserver`
 
 Setup the Oauth2 Integration 
