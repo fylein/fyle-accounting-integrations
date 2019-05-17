@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'accounting_integrations.allauth.providers.fylein',
     'accounting_integrations.general',
     'accounting_integrations.fyle',
+    'accounting_integrations.export',
 ]
 
 MIDDLEWARE = [
