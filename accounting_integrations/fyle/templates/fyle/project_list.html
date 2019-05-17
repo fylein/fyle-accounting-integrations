@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}Fyle Accounting Integrations - Project List{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      Fyle Project Data
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Fyle</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Projects</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">List of Projects in your Fyle Account</h4>
+  {#        <p class="card-description">#}
+  {#          Add class <code>.table-striped</code>#}
+  {#        </p>#}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Code 1</th>
+                <th>Code 2</th>
+                <th>Code 3</th>
+                <th>Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for project in project_list  %}
+                <tr>
+                  <td><a href="{% url "project_update" project.id %}">{{ project.name }}</a></td>
+                  <td>{{ project.description }}</td>
+                  <td>{{ project.code1|default_if_none:"" }}</td>
+                  <td>{{ project.code2|default_if_none:"" }}</td>
+                  <td>{{ project.code3|default_if_none:"" }}</td>
+                  <td>{{ project.active }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br/>
+          {% include "pagination.html" %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}

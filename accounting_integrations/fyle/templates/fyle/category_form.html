@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+{% load fyle_import %}
+
+{% block title %}Fyle Accounting Integrations - Category Data{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      Fyle Category Data
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Fyle</a></li>
+        <li class="breadcrumb-item" aria-current="page">Categories</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ category.id }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Edit Category <span class="font-weight-bold">{{ category.id }}</span></h4>
+          <form class="form-sample" method="post">
+            {% csrf_token %}
+            <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Name</label>
+
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ category.name }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Code</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ category.code }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label" for="id_code1">Fyle Category</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ category.fyle_category }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Sub Category</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ category.sub_category }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label" for="id_code1">Code 1</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" name="code1" id="id_code1"
+                         value="{{ category.code1|default_if_none:"" }}"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label" for="id_code2">Code 2</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" name="code2" id="id_code2"
+                         value="{{ category.code2|default_if_none:"" }}"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label" for="id_code3">Code 3</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" name="code3" id="id_code3"
+                         value="{{ category.code3|default_if_none:"" }}"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Enabled</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">
+                      <i class="mdi {% if category.enabled %}mdi-check-circle{% else %}mdi-checkbox-blank-circle-outline{% endif %}
+                       mdi-24px text-primary"></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+            <a class="btn btn-light" href="{% url "category_list" %}">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}

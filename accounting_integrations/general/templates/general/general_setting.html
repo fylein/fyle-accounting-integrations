@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% load fyle_import %}
+
+{% block title %}Fyle Accounting Integrations - General Settings{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+       General Settings
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">General</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Settings</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"> Manage the general settings for this app </h4>
+          <form class="form-sample" method="post">
+            {% csrf_token %}
+            <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label" for="id_notification_emails">Notification Emails</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control mt-2  {% if form.notification_emails.errors %}is-invalid{% endif %}"
+                        id="id_notification_emails" name="notification_emails"
+                        rows="4">{{ generalsetting.notification_emails|default_if_none:"" }}</textarea>
+                    <div class="invalid-feedback">{{ form.notification_emails.errors.0 }}</div>
+                    <small id="emailHelp" class="form-text text-muted">Enter a comma separated list of emails to be notified.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}

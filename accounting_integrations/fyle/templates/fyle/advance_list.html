@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+
+{% block title %}Fyle Accounting Integrations - Advance List{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      Fyle Advance Data
+    </h3>
+    <nav aria-label="breadcrumb">
+      {% if importbatch_id %}
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Fyle</a></li>
+          <li class="breadcrumb-item"><a href="#">Import Batches</a></li>
+          <li class="breadcrumb-item"><a href="#">{{ importbatch_id }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Advances</li>
+        </ol>
+      {% else %}
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Fyle</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Advances</li>
+        </ol>
+      {% endif %}
+
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          {% if importbatch_id %}
+            <h4 class="card-title">List of Advances imported in the batch {{ importbatch_id }}</h4>
+          {% else %}
+            <h4 class="card-title">List of Advances in your Fyle Account</h4>
+          {% endif %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Employee</th>
+                <th>Project</th>
+                <th>Currency</th>
+                <th>Amount</th>
+                <th>Original Currency</th>
+                <th>Original Amount</th>
+                <th>Purpose</th>
+                <th>Reference</th>
+                <th>Payment Mode</th>
+                <th>Issued At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for advance in advance_list %}
+                <tr>
+                  <td><a href="{% url "advance_detail" advance.id %}">{{ advance.id }}</a></td>
+                  <td>{{ advance.employee.full_name }}</td>
+                  <td>{{ advance.project.name }}</td>
+                  <td>{{ advance.currency }}</td>
+                  <td>{{ advance.amount }}</td>
+                  <td>{{ advance.original_currency }}</td>
+                  <td>{{ advance.original_amount }}</td>
+                  <td>{{ advance.purpose }}</td>
+                  <td>{{ advance.reference }}</td>
+                  <td>{{ advance.payment_mode }}</td>
+                  <td>{{ advance.issued_at }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br/>
+          {% include "pagination.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}

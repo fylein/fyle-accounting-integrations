@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+{% load fyle_import %}
+
+{% block title %}Fyle Accounting Integrations - Advance Data{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      Fyle Advance Data
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Fyle</a></li>
+        <li class="breadcrumb-item" aria-current="page">Advances</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ advance.id }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Details of Advance <span class="font-weight-bold">{{ advance.id }}</span></h4>
+
+            <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Employee</label>
+
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.employee.full_name }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Project</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.project.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Currency</label>
+
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.currency }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Amount</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.amount }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Original Currency</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.original_currency|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Original Amount</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.original_amount|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Purpose</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.purpose|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Payment Mode</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.payment_mode|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Reference</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.reference|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Issued At</label>
+                  <div class="col-sm-9">
+                    <p class="font-weight-bold mt-2">{{ advance.issued_at|default_if_none:"" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}
