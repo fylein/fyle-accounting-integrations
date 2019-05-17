@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 from accounting_integrations.general.models import File
+from accounting_integrations.fyle.models import ImportBatch
 
 
 class ExportSetting(models.Model):
@@ -16,6 +17,7 @@ class ExportSetting(models.Model):
 class ExportBatch(models.Model):
     """ Model for recording the Export Batch Jobs """
     created_at = models.DateTimeField(auto_now_add=True)
+    import_batch = models.OneToOneField(ImportBatch, on_delete=models.CASCADE)
     files = GenericRelation(File)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 

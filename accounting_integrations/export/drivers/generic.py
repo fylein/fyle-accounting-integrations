@@ -6,14 +6,12 @@ from django.utils.text import slugify
 from django.core.files.base import ContentFile
 
 from accounting_integrations.export.drivers.base import BaseExportDriver
-from accounting_integrations.export.drivers import register_driver
 from accounting_integrations.general.models import File
 
 
-@register_driver
 class GenericCsvExportDriver(BaseExportDriver):
     """ A Generic Drive for Exporting to CSV """
-
+    name = 'Generic CSV Driver'
     column_mappings = {
         'projects': {},
         'costcenters': {},
@@ -22,10 +20,6 @@ class GenericCsvExportDriver(BaseExportDriver):
         'expenses': {},
         'advances': {}
     }
-
-    @property
-    def name(self):
-        return 'Generic CSV Driver'
 
     def prepare(self):
         """ Prepare the Export CSV Data from the Import JSON Files """

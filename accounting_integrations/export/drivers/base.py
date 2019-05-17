@@ -1,20 +1,16 @@
 """ Define the Base Interface for the Export Driver """
 from abc import ABCMeta, abstractmethod
 
-from accounting_integrations.export.models import ExportBatch
 from accounting_integrations.general.utils import singleton
 
 
 class BaseExportDriver(metaclass=ABCMeta):
     """ Base class for the Export Driver """
-    def __init__(self, export_batch_id):
-        self.export_batch = ExportBatch.objects.get(pk=export_batch_id)
+    name = ''
 
-    @property
-    @abstractmethod
-    def name(self):
-        """ Abstract method to return the name of the Driver """
-        pass
+    def __init__(self, export_batch_id):
+        from accounting_integrations.export.models import ExportBatch
+        self.export_batch = ExportBatch.objects.get(pk=export_batch_id)
 
     @abstractmethod
     def prepare(self):
@@ -55,21 +51,6 @@ class DriverRegistry:
         """Return a list of registered Driver key and names """
         return [(dn, dc.name) for dn, dc in self._registry.items()]
 
+
 # Singleton Registry, populated with the help of @<register_driver> decorators
 driver_registry = DriverRegistry()
-
-
-def register_driver():
-    """ Shortcut to register the driver class
-
-    @register_driver
-    class SomeCsvExportDriver(BaseExportDriver):
-        pass
-
-    """
-
-    def _register_driver_wrapper(cls):
-        driver_registry.register(cls)
-        return cls
-
-    return _register_driver_wrapper

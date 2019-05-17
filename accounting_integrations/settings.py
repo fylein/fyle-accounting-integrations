@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'accounting_integrations.allauth.providers.fylein',
     'accounting_integrations.general',
     'accounting_integrations.fyle',
-    'accounting_integrations.export',
+    'accounting_integrations.export.apps.ExportConfig',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +154,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 FYLE_BASE_URL = 'https://staging.fyle.in'
 FYLE_CLIENT_ID = config('FYLE_CLIENT_ID')
 FYLE_CLIENT_SECRET = config('FYLE_CLIENT_SECRET')
+
+EXPORT_DRIVERS = [
+    'accounting_integrations.export.drivers.generic.GenericCsvExportDriver',
+]

@@ -1,4 +1,4 @@
-from .base import register_driver, driver_registry
+from .base import driver_registry, BaseExportDriver
 
 
-__all__ = ('register_driver', 'driver_registry')
+__all__ = ('driver_registry', 'BaseExportDriver')

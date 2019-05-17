@@ -97,6 +97,21 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-export" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">Export</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-upload-multiple menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-export">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "export_setting" %}">Settings</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-general" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">General</span>
               <i class="menu-arrow"></i>
