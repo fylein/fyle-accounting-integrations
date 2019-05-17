@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'storages',
     'accounting_integrations.allauth.providers.fylein',
     'accounting_integrations.general',
     'accounting_integrations.fyle',
@@ -141,6 +142,12 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_EMAIL_VERIFICATION = "none"
 LOGIN_REDIRECT_URL = 'index'
 ACCOUNT_LOGOUT_ON_GET = True
+
+# Django Storages Settings
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Project related settings
 FYLE_BASE_URL = 'https://staging.fyle.in'

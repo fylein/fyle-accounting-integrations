@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.postgres.fields import JSONField
+
+from accounting_integrations.general.models import File
 
 
 class Project(models.Model):
@@ -120,6 +123,7 @@ class ImportBatch(models.Model):
     max_updated_at = models.DateTimeField(null=True, blank=True)
     expenses = models.ManyToManyField(Expense)
     advances = models.ManyToManyField(Advance)
+    files = GenericRelation(File)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 

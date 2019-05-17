@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 
 from accounting_integrations.fyle.models import (
     Project, CostCenter, Category, Employee, Expense, Advance, ImportBatch)
-from accounting_integrations.fyle.utils import import_fyle_data
+from accounting_integrations.fyle.utils import ImportBatchRunner
 
 
 class IndexView(TemplateView):
@@ -226,7 +226,8 @@ class ImportBatchCreateView(SuccessMessageMixin, CreateView):
         response = super().form_valid(form)
 
         # Call the import function for loading fyle data
-        import_fyle_data(self.object.id)
+        runner = ImportBatchRunner(self.object.id)
+        runner.import_fyle_data()
 
         return response
 

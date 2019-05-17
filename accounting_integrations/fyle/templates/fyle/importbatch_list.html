@@ -58,7 +58,7 @@
                       {{ importbatch.advances.count }}
                     {% endif %}
                   </td>
-                  <td></td>
+                  <td>{{ importbatch.files.count }}</td>
                   <td>{{ importbatch.min_updated_at|default_if_none:"" }}</td>
                   <td>{{ importbatch.max_updated_at|default_if_none:"" }}</td>
                   <td>{{ importbatch.created_at }}</td>
