@@ -23,7 +23,7 @@
             <h4 class="card-title float-left">List of Import Batch Jobs</h4>
             <form class="float-right" method="post" action="{% url "importbatch_create" %}">
               {% csrf_token %}
-              <button type="submit" class="btn btn-outline-danger btn-icon-text">
+              <button type="submit" class="btn btn-outline-primary btn-sm btn-icon-text">
                 <i class="mdi mdi-download btn-icon-prepend"></i>Start an Import Batch</button>
             </form>
           </div>
@@ -43,22 +43,28 @@
             <tbody>
               {% for importbatch in importbatch_list %}
                 <tr>
-                  <td><a href="{% url "advance_detail" importbatch.id %}">{{ importbatch.id }}</a></td>
+                  <td>{{ importbatch.id }}</td>
                   <td>
                     {% if importbatch.expenses.count %}
                       <a href="{% url "importbatch_expeses" importbatch.id %}">{{ importbatch.expenses.count }}</a>
                     {% else %}
-                      {{ importbatch.expenses.count }}
+                      0
                     {% endif %}
                   </td>
                   <td>
                     {% if importbatch.advances.count %}
                       <a href="{% url "importbatch_advances" importbatch.id %}">{{ importbatch.advances.count }}</a>
                     {% else %}
-                      {{ importbatch.advances.count }}
+                      0
                     {% endif %}
                   </td>
-                  <td>{{ importbatch.files.count }}</td>
+                  <td>
+                    {% if importbatch.files.count %}
+                      <a href="{% url "importbatch_files" importbatch.id %}">{{ importbatch.files.count }}</a>
+                    {% else %}
+                      0
+                    {% endif %}
+                  </td>
                   <td>{{ importbatch.min_updated_at|default_if_none:"" }}</td>
                   <td>{{ importbatch.max_updated_at|default_if_none:"" }}</td>
                   <td>{{ importbatch.created_at }}</td>

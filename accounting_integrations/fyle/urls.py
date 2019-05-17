@@ -35,5 +35,7 @@ urlpatterns = [
          login_required(views.ImportBatchExpenseListView.as_view()), name='importbatch_expeses'),
     path('import-batches/<int:pk>/advances',
          login_required(views.ImportBatchAdvanceListView.as_view()), name='importbatch_advances'),
+    path('import-batches/<int:pk>/files',
+         login_required(views.ImportBatchFileListView.as_view()), name='importbatch_files'),
 
 ]

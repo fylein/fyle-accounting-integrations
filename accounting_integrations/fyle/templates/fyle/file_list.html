@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+{% load fyle_import %}
+
+{% block title %}Fyle Accounting Integrations - File List{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+      Fyle File Data
+    </h3>
+    <nav aria-label="breadcrumb">
+      {% if importbatch_id %}
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Fyle</a></li>
+          <li class="breadcrumb-item"><a href="#">Import Batches</a></li>
+          <li class="breadcrumb-item"><a href="#">{{ importbatch_id }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Files</li>
+        </ol>
+      {% endif %}
+
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          {% if importbatch_id %}
+            <h4 class="card-title">List of files in the Import Batch {{ importbatch_id }}</h4>
+          {% endif %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Filename</th>
+                <th>File Type</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for file in file_list %}
+                <tr>
+                  <td>{{ file.id }}</td>
+                  <td>{{ file.filename }}</td>
+                  <td>{{ file.type }}</td>
+                  <td>
+                    <a class="btn btn-outline-primary btn-sm btn-icon-text"
+                        href="{% url "download_file" file.id %}">
+                      <i class="mdi mdi-download btn-icon-prepend"></i>Download File</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br/>
+            <nav aria-label="Paginate Event Hooks" class="d-flex">
+              <ul class="pagination">
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=page_obj.previous_page_number%}">Previous</a></li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                  <li class="page-item"><a class="page-link" href="?{% param_replace page=page_obj.next_page_number%}">Next</a></li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a></li>
+                {% endif %}
+              </ul>
+              <span class="mt-2 ml-2 text-info"> {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} Projects</span>
+            </nav>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}

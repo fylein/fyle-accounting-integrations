@@ -177,7 +177,7 @@ class ImportBatchRunner:
 
         data_file.contents.save(
             f'fyle_{schema.__class__.__name__.lower()}_data_{self.batch.id}.json',
-            ContentFile(json.dumps(data).encode('utf-8')))
+            ContentFile(json.dumps(data, indent=4).encode('utf-8')))
         return data
 
     @staticmethod
