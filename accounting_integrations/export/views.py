@@ -41,8 +41,8 @@ class ExportBatchListView(ListView):
         return queryset
 
 
-class ExportBatchCreateView(View):
-    """ Run the export for all pending import batches """
+class ExportBatchPrepareView(View):
+    """ Run the export prepare for all pending import batches """
 
     def post(self, request):
         """ Show only current user data """
@@ -56,14 +56,19 @@ class ExportBatchCreateView(View):
         driver_cls = driver_registry.get_driver(setting.driver)
 
         # Get the list of pending imports
-        pending_imports = ImportBatch.objects.filter(exportbatch=None).\
+        pending_imports = ImportBatch.objects.\
+            filter(exportbatch=None, status='C').\
             order_by('-created_at')
         for batch in pending_imports:
             export = ExportBatch.objects.create(
                 import_batch=batch, user=request.user)
             driver = driver_cls(export.id)
             driver.prepare()
-            break
+            export.status = 'PR'
+            export.save()
+
+        messages.success(
+            self.request, 'Export batches created for all pending Imports')
 
         return HttpResponseRedirect(reverse_lazy('exportbatch_list'))
 
@@ -84,3 +89,32 @@ class ExportBatchFileListView(ListView):
         context_data = super().get_context_data(**kwargs)
         context_data['exportbatch_id'] = self.kwargs.get('pk')
         return context_data
+
+
+class ExportBatchPushView(View):
+    """ Run the export prepare for all pending import batches """
+
+    def post(self, request, pk):
+        """ Show only current user data """
+        # Check if the export driver has been setup
+        setting = ExportSetting.objects.filter(user=request.user).first()
+        if not setting or not setting.driver:
+            messages.warning(
+                self.request, 'You need to setup the export driver '
+                              'before running exports.')
+            return HttpResponseRedirect(reverse_lazy('export_setting'))
+        driver_cls = driver_registry.get_driver(setting.driver)
+
+        # Get the export batch object
+        export_batch = ExportBatch.objects.get(pk=pk)
+
+        # Push the export batch and update its status.
+        driver = driver_cls(export_batch.id)
+        driver.push()
+        export_batch.status = 'PU'
+        export_batch.save()
+
+        messages.success(self.request,
+                         f'Export batch {pk} has been pushed successfully.')
+
+        return HttpResponseRedirect(reverse_lazy('exportbatch_list'))

@@ -20,10 +20,10 @@
         <div class="card-body">
           <div class="clearfix">
             <h4 class="card-title float-left">List of Export Batch Jobs</h4>
-            <form class="float-right" method="post" action="{% url "exportbatch_create" %}">
+            <form class="float-right" method="post" action="{% url "exportbatch_prepare" %}">
               {% csrf_token %}
               <button type="submit" class="btn btn-outline-primary btn-sm btn-icon-text">
-                <i class="mdi mdi-upload-multiple btn-icon-prepend"></i>Export pending Imports</button>
+                <i class="mdi mdi-upload-multiple btn-icon-prepend"></i>Prepare pending Imports</button>
             </form>
           </div>
 
@@ -33,7 +33,9 @@
                 <th>ID</th>
                 <th>Import Batch</th>
                 <th>Files</th>
+                <th>Status</th>
                 <th>Created At</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -48,7 +50,16 @@
                       0
                     {% endif %}
                   </td>
+                  <td>{{ exportbatch.get_status_display }}</td>
                   <td>{{ exportbatch.created_at }}</td>
+                  <td>
+                    {% if exportbatch.status == 'PR' %}
+                      <form method="post" action="{% url "exportbatch_push" exportbatch.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm mdi mdi-upload"> Push</button>
+                      </form>
+                    {% endif %}
+                  </td>
                 </tr>
               {% endfor %}
             </tbody>

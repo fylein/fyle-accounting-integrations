@@ -215,5 +215,6 @@ class ImportBatchRunner:
         # Import the Advance Data
         self._import_advance_data(last_updated_at)
 
+        self.batch.status = 'C'
         self.batch.save()
 
