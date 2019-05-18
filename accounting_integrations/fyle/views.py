@@ -278,7 +278,7 @@ class ImportBatchAdvanceListView(ListView):
 
 class ImportBatchFileListView(ListView):
     """ View for listing of Files of the Import Batch """
-    template_name = 'fyle/file_list.html'
+    template_name = 'general/file_list.html'
     model = File
     paginate_by = 10
 

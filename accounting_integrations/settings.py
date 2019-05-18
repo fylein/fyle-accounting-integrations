@@ -156,5 +156,5 @@ FYLE_CLIENT_ID = config('FYLE_CLIENT_ID')
 FYLE_CLIENT_SECRET = config('FYLE_CLIENT_SECRET')
 
 EXPORT_DRIVERS = [
-    'accounting_integrations.export.drivers.generic.GenericCsvExportDriver',
+    'accounting_integrations.csv_export.drivers.SampleCsvExportDriver',
 ]
