@@ -1,7 +1,7 @@
 from django import forms
+from django.apps import apps
 
 from accounting_integrations.export.models import ExportSetting
-from accounting_integrations.export.drivers import driver_registry
 
 
 class ExportSettingForm(forms.ModelForm):
@@ -9,7 +9,8 @@ class ExportSettingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['driver'].choices = driver_registry.get_driver_list()
+        export_app = apps.get_app_config('export')
+        self.fields['driver'].choices = export_app.get_driver_list()
 
     class Meta:
         model = ExportSetting

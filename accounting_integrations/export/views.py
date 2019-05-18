@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
@@ -6,7 +7,6 @@ from django.views.generic import UpdateView, View, ListView
 
 from accounting_integrations.general.models import File
 from accounting_integrations.fyle.models import ImportBatch
-from accounting_integrations.export.drivers import driver_registry
 from accounting_integrations.export.models import ExportSetting, ExportBatch
 from accounting_integrations.export.forms import ExportSettingForm
 
@@ -53,7 +53,9 @@ class ExportBatchPrepareView(View):
                 self.request, 'You need to setup the export driver '
                               'before running exports.')
             return HttpResponseRedirect(reverse_lazy('export_setting'))
-        driver_cls = driver_registry.get_driver(setting.driver)
+
+        export_app = apps.get_app_config('export')
+        driver_cls = export_app.get_driver(setting.driver)
 
         # Get the list of pending imports
         pending_imports = ImportBatch.objects.\
@@ -103,7 +105,10 @@ class ExportBatchPushView(View):
                 self.request, 'You need to setup the export driver '
                               'before running exports.')
             return HttpResponseRedirect(reverse_lazy('export_setting'))
-        driver_cls = driver_registry.get_driver(setting.driver)
+
+        # Get the driver class for this user
+        export_app = apps.get_app_config('export')
+        driver_cls = export_app.get_driver(setting.driver)
 
         # Get the export batch object
         export_batch = ExportBatch.objects.get(pk=pk)
