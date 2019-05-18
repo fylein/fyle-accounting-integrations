@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_!^@dtp3$s5$@xupe9_3d--_n$r-11_u+xaavcnhs6milc#&#%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool, default=True)
 
 ALLOWED_HOSTS = []
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'accounting_integrations.allauth.providers.fylein',
     'accounting_integrations.general',
     'accounting_integrations.fyle',
+    'accounting_integrations.export.apps.ExportConfig',
 ]
 
 MIDDLEWARE = [
@@ -148,8 +149,17 @@ AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_DEFAULT_ACL = None
+
+# Email related settings
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Project related settings
 FYLE_BASE_URL = 'https://staging.fyle.in'
 FYLE_CLIENT_ID = config('FYLE_CLIENT_ID')
 FYLE_CLIENT_SECRET = config('FYLE_CLIENT_SECRET')
+
+EXPORT_DRIVERS = [
+    'accounting_integrations.csv_export.drivers.SampleCsvExportDriver',
+]

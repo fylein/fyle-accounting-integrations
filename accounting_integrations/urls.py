@@ -23,5 +23,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('fyle/', include('accounting_integrations.fyle.urls')),
     path('general/', include('accounting_integrations.general.urls')),
+    path('export/', include('accounting_integrations.export.urls')),
     path('', login_required(views.IndexView.as_view()), name='index'),
 ]

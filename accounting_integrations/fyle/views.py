@@ -32,7 +32,7 @@ class ProjectListView(ListView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user)
+        queryset = queryset.filter(user=self.request.user)
         return queryset
 
 
@@ -62,7 +62,7 @@ class CostCenterListView(ListView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user)
+        queryset = queryset.filter(user=self.request.user)
         return queryset
 
 
@@ -92,7 +92,7 @@ class CategoryListView(ListView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user)
+        queryset = queryset.filter(user=self.request.user)
         return queryset
 
 
@@ -122,7 +122,7 @@ class EmployeeListView(ListView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user)
+        queryset = queryset.filter(user=self.request.user)
         return queryset
 
 
@@ -152,7 +152,8 @@ class ExpenseListView(ListView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user).select_related('employee')
+        queryset = queryset.filter(user=self.request.user).\
+            select_related('employee')
         return queryset
 
 
@@ -180,7 +181,7 @@ class AdvanceListView(ListView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user).\
+        queryset= queryset.filter(user=self.request.user).\
             select_related('employee').select_related('project')
         return queryset
 
@@ -193,7 +194,7 @@ class AdvanceDetailView(DetailView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user).\
+        queryset = queryset.filter(user=self.request.user).\
             select_related('employee').select_related('project')
         return queryset
 
@@ -208,7 +209,7 @@ class ImportBatchListView(ListView):
     def get_queryset(self):
         """ Show only current user data """
         queryset = super().get_queryset()
-        queryset.filter(user=self.request.user).\
+        queryset = queryset.filter(user=self.request.user).\
             prefetch_related('advances').prefetch_related('expenses')
         return queryset
 
@@ -277,7 +278,7 @@ class ImportBatchAdvanceListView(ListView):
 
 class ImportBatchFileListView(ListView):
     """ View for listing of Files of the Import Batch """
-    template_name = 'fyle/file_list.html'
+    template_name = 'general/file_list.html'
     model = File
     paginate_by = 10
 

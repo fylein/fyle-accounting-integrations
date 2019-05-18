@@ -15,6 +15,13 @@
           <li class="breadcrumb-item"><a href="#">{{ importbatch_id }}</a></li>
           <li class="breadcrumb-item active" aria-current="page">Files</li>
         </ol>
+      {% elif exportbatch_id %}
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Export</a></li>
+          <li class="breadcrumb-item"><a href="#">Batches</a></li>
+          <li class="breadcrumb-item"><a href="#">{{ exportbatch_id }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Files</li>
+        </ol>
       {% endif %}
 
     </nav>
@@ -25,6 +32,8 @@
         <div class="card-body">
           {% if importbatch_id %}
             <h4 class="card-title">List of files in the Import Batch {{ importbatch_id }}</h4>
+          {% elif exportbatch_id %}
+            <h4 class="card-title">List of files in the Export Batch {{ importbatch_id }}</h4>
           {% endif %}
           <table class="table table-striped">
             <thead>

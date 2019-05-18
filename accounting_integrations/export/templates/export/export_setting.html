@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load fyle_import %}
+
+{% block title %}Fyle Accounting Integrations - Export Settings{% endblock %}
+
+{% block body_content %}
+  <div class="page-header">
+    <h3 class="page-title">
+       Export Settings
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Export</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Settings</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"> Manage the export settings for this app </h4>
+          <form class="form-sample" method="post">
+            {% csrf_token %}
+            <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label" for="id_driver">Export Driver</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="id_driver" name="driver">
+                      {% for key, value in form.fields.driver.choices %}
+                        <option value="{{ key }}"
+                          {% if form.instance.driver == key %}selected{% endif %}>{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                    <div class="invalid-feedback">{{ form.driver.errors.0 }}</div>
+                    <small id="emailHelp" class="form-text text-muted">Select the driver for exporting data.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body_content %}

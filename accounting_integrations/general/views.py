@@ -16,8 +16,9 @@ class GeneralSettingUpdateView(SuccessMessageMixin, UpdateView):
 
     def get_object(self, queryset=None):
         """ Return the fyle import configuration for the user"""
-        import_config, _ = self.get_queryset().get_or_create(user=self.request.user)
-        return import_config
+        general_setting, _ = self.get_queryset().\
+            get_or_create(user=self.request.user)
+        return general_setting
 
 
 class DownloadFileView(View):

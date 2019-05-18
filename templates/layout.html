@@ -11,7 +11,8 @@
   <title>{% block title %}{% endblock %}</title>
 
   <!-- plugins:css -->
-  <link rel="stylesheet" href="{% static "vendors/iconfonts/mdi/css/materialdesignicons.min.css" %}">
+{#  <link rel="stylesheet" href="{% static "vendors/iconfonts/mdi/css/materialdesignicons.min.css" %}">#}
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" >
   <link rel="stylesheet" href="{% static "vendors/css/vendor.bundle.base.css" %}">
   <link rel="stylesheet" href="{%  static "vendors/css/vendor.bundle.addons.css" %}">
   <!-- endinject -->
@@ -91,6 +92,24 @@
                   <a class="nav-link" href="{% url "employee_list" %}">Employees</a>
                   <a class="nav-link" href="{% url "expense_list" %}">Expenses</a>
                   <a class="nav-link" href="{% url "advance_list" %}">Advances</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-export" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">Export</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-upload-network menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-export">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "export_setting" %}">Settings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "exportbatch_list" %}">Export Batches</a>
                 </li>
               </ul>
             </div>

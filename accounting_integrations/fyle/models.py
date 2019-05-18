@@ -118,7 +118,16 @@ class Advance(models.Model):
 
 class ImportBatch(models.Model):
     """ Model for recording the Import Batch Jobs """
+    STATUS_CHOICES = (
+        ('S', 'Started'),
+        ('C', 'Completed'),
+        ('F', 'Failed'),
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=2, choices=STATUS_CHOICES, default='S')
+    detailed_status = models.TextField(null=True, blank=True)
     min_updated_at = models.DateTimeField(null=True, blank=True)
     max_updated_at = models.DateTimeField(null=True, blank=True)
     expenses = models.ManyToManyField(Expense)
