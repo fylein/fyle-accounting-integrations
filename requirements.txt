@@ -7,3 +7,4 @@ fylesdk==0.0.2
 python-decouple==3.1
 django-storages==1.7.1
 boto3==1.9.149
+django-sendgrid-v5==0.8.0

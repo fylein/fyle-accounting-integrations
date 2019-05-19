@@ -151,23 +151,28 @@ LOGIN_REDIRECT_URL = 'index'
 ACCOUNT_LOGOUT_ON_GET = True
 
 # Django Storages Settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-AWS_LOCATION=config('AWS_LOCATION')
-AWS_S3_HOST=config('AWS_S3_HOST')
-S3_USE_SIGV4=config('S3_USE_SIGV4', cast=bool)
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_LOCATION = config('AWS_LOCATION')
+S3_USE_SIGV4= True
 AWS_DEFAULT_ACL = None
-
-# Email related settings
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Project related settings
 FYLE_BASE_URL = config('FYLE_BASE_URL')
 FYLE_CLIENT_ID = config('FYLE_CLIENT_ID')
 FYLE_CLIENT_SECRET = config('FYLE_CLIENT_SECRET')
+
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = config("SENDGRID_API_KEY")
+
+# Toggle sandbox mode (when running in DEBUG mode)
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+
+# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+SENDGRID_ECHO_TO_STDOUT=True
 
 EXPORT_DRIVERS = [
     'accounting_integrations.csv_export.drivers.SampleCsvExportDriver',
