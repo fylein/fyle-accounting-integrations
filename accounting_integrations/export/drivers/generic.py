@@ -1,6 +1,5 @@
 """ Define generic reusable decorators here """
 import csv
-import json
 import io
 from django.utils.text import slugify
 from django.core.files.base import ContentFile
@@ -8,6 +7,8 @@ from django.core.mail import EmailMessage
 
 from accounting_integrations.export.drivers.base import BaseExportDriver
 from accounting_integrations.general.models import File, GeneralSetting
+from accounting_integrations.fyle.models import (
+    Project, CostCenter, Category, Employee, Expense, Advance)
 
 
 class GenericCsvExportDriver(BaseExportDriver):
@@ -17,42 +18,50 @@ class GenericCsvExportDriver(BaseExportDriver):
     # Define the column mappings for each Fyle entity, the mapping must be a
     # list of tuples with source column and destination column
     column_mappings = {
-        'projects': [],
-        'costcenters': [],
-        'categories': [],
-        'employees': [],
-        'expenses': [],
-        'advances': []
+        'Project': [],
+        'CostCenter': [],
+        'Category': [],
+        'Employee': [],
+        'Expense': [],
+        'Advance': []
     }
+
+    def _save_prepared_data(self, model_name, items):
+        # Generate the CSV file using the mappings
+        column_map = self.column_mappings.get(model_name)
+        if items and column_map:
+            output = io.StringIO()
+            output_csv = csv.writer(output, quoting=csv.QUOTE_NONNUMERIC)
+
+            # Get the columns for the CSV
+            dest_col = [x for _, x in column_map]
+            source_col = {y: x for x, y in column_map}
+            output_csv.writerow(dest_col)
+
+            for obj in items:
+                row = []
+                for col in dest_col:
+                    row.append(getattr(obj, source_col[col], None))
+                output_csv.writerow(row)
+
+            # Save the CSV to a file and append it
+            data_file = File(type='text/csv', related_object=self.export_batch)
+            data_file.contents.save(
+                f'{slugify(self.name)}_{model_name}_'
+                f'data_{self.export_batch.id}.csv',
+                ContentFile(output.getvalue().encode('utf-8')))
 
     def prepare(self):
         """ Prepare the Export CSV Data from the Import JSON Files """
-        for file in self.export_batch.import_batch.files.all():
-            data_type = file.filename.split('_')[1]
+        # Load the project, cost-center, category and employee data
+        for model in [Project, CostCenter, Category, Employee]:
+            self._save_prepared_data(model.__name__, model.objects.all())
 
-            # Generate the CSV file using the mappings
-            column_map = self.column_mappings.get(data_type)
-            if column_map:
-                import_data = json.loads(file.contents.read())
-                output = io.StringIO()
-                output_csv = csv.writer(output, quoting=csv.QUOTE_NONNUMERIC)
-
-                # Get the columns for the CSV
-                dest_col = [x for _, x in column_map]
-                source_col = {y: x for x, y in column_map}
-                output_csv.writerow(dest_col)
-                for data in import_data:
-                    row = []
-                    for col in dest_col:
-                        row.append(data.get(source_col[col]))
-                    output_csv.writerow(row)
-
-                # Save the CSV to a file and append it
-                data_file = File(type='text/csv', related_object=self.export_batch)
-                data_file.contents.save(
-                    f'{slugify(self.name)}_{data_type}_'
-                    f'data_{self.export_batch.id}.csv',
-                    ContentFile(output.getvalue().encode('utf-8')))
+        # Load the rest of the models
+        for model in [Expense, Advance]:
+            self._save_prepared_data(
+                model.__name__,
+                model.objects.filter(importbatch=self.export_batch.import_batch))
 
     def push(self):
         """ Email the prepared CSV data to the User """
