@@ -73,7 +73,8 @@ class ImportBatchRunner:
 
     def _import_project_data(self):
         """ Import the Project Data """
-        for data in self._get_fyle_data(self.fyle_api.Projects, {}):
+        for data in self._get_fyle_data(
+                self.fyle_api.Projects, {'active_only': False}):
             defaults = {
                 'name': data['name'],
                 'description': data['description'],
@@ -84,7 +85,8 @@ class ImportBatchRunner:
 
     def _import_costcenter_data(self):
         """ Import the Cost Center Data """
-        for data in self._get_fyle_data(self.fyle_api.CostCenters, {}):
+        for data in self._get_fyle_data(
+                self.fyle_api.CostCenters, {'active_only': False}):
             self._update_min_max_updated_at(data)
             defaults = {
                 'name': data['name'],
@@ -95,7 +97,8 @@ class ImportBatchRunner:
 
     def _import_category_data(self):
         """ Import the Category Data """
-        for data in self._get_fyle_data(self.fyle_api.Categories, {}):
+        for data in self._get_fyle_data(
+                self.fyle_api.Categories, {'active_only': False}):
             self._update_min_max_updated_at(data)
             defaults = {
                 'name': data['name'],
@@ -138,8 +141,8 @@ class ImportBatchRunner:
         for data in self._get_fyle_data(
                 self.fyle_api.Expenses, expense_params, True):
             self._update_min_max_updated_at(data)
+
             defaults = {
-                'employee_id': data['employee_id'],
                 'currency': data['currency'],
                 'amount': data['amount'],
                 'foreign_currency': data['foreign_currency'],
@@ -155,10 +158,20 @@ class ImportBatchRunner:
                 'verified_at': data['verified_at'],
                 'reimbursed_at': data['reimbursed_at'],
                 'vendor': data['vendor'],
-                'project_id': data['project_id'],
-                'cost_center_id': data['cost_center_id'],
-                'category_id': data['category_id'],
             }
+            if data['employee_id']:
+                defaults['employee'] = Employee.objects.filter(
+                    id=data['employee_id']).first()
+            if data['project_id']:
+                defaults['project'] = Project.objects.filter(
+                    id=data['project_id']).first()
+            if data['cost_center_id']:
+                defaults['cost_center'] = CostCenter.objects.filter(
+                    id=data['cost_center_id']).first()
+            if data['category_id']:
+                defaults['category'] = Category.objects.filter(
+                    id=data['category_id']).first()
+
             expense, _ = Expense.objects.update_or_create(
                 id=data['id'], user=self.batch.user, defaults=defaults)
             self.batch.expenses.add(expense)
@@ -172,7 +185,6 @@ class ImportBatchRunner:
                 self.fyle_api.Advances, advance_params, True):
             self._update_min_max_updated_at(data)
             defaults = {
-                'employee_id': data['employee_id'],
                 'currency': data['currency'],
                 'amount': data['amount'],
                 'original_currency': data['original_currency'],
@@ -181,8 +193,13 @@ class ImportBatchRunner:
                 'issued_at': data['issued_at'],
                 'payment_mode': data['payment_mode'],
                 'reference': data['reference'],
-                'project_id': data['project_id'],
             }
+            if data['employee_id']:
+                defaults['employee'] = Employee.objects.filter(
+                    id=data['employee_id']).first()
+            if data['project_id']:
+                defaults['project'] = Project.objects.filter(
+                    id=data['project_id']).first()
             advance, _ = Advance.objects.update_or_create(
                 id=data['id'], user=self.batch.user, defaults=defaults)
             self.batch.advances.add(advance)
